@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <h1 className="text3xl">{hello}</h1>
+      <h1 className="text3xl font-bold">{hello}</h1>
     </div>
   )
 }
