@@ -14,12 +14,13 @@ const MONGO_URI = useAuth && user && password
     ? `mongodb://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}:${port}/${dbName}?authSource=${authSource}`
     : `mongodb://${host}:${port}/${dbName}`;
 
-console.log(`MongoDB URI: ${MONGO_URI}`);
-
 const connectDB = async () => {
     try {
         console.log(`Iniciando conexão com banco e dados MongoDB`);
-        await mongoose.connect(MONGO_URI);
+        console.log(`MongoDB URI: ${MONGO_URI}`);
+        await mongoose.connect(MONGO_URI, {
+            serverSelectionTimeoutMS: 5000, // Tempo limite para seleção do servidor
+        });
         console.log(`✅ Conexão com MongoDB estabelecida com sucesso`);
         return true;
     } catch (error) {
