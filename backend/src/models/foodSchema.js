@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
-const itemsSchema = new Mongoose.Schema({
+const foodSchema = new mongoose.Schema({
     name: { type: String, required: true },
     price: { type: Number, required: true },
     category: { type: String, enum: ['drink', 'food'], required: true },
     status: { type: String, enum: ['available', 'unavailable'], default: 'available' },
 });
 
-const Item = mongoose.model('Item', itemsSchema);
+const Food = mongoose.model('Food', foodSchema);
 
-export default Item;
+export default Food;

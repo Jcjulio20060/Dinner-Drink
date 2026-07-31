@@ -1,5 +1,6 @@
 import express from 'express';
 import tablesRouter from './routes/tablesRoutes.js';
+import foodRouter from './routes/foodRoutes.js';
 
 const router = express.Router();
 
@@ -12,5 +13,6 @@ router.get('/health', (req, res) => {
 });
 
 router.use('/tables', tablesRouter);
+router.use('/food', foodRouter);
 
 export default router;
