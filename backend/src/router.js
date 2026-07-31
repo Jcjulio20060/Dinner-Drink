@@ -1,6 +1,7 @@
 import express from 'express';
 import tablesRouter from './routes/tablesRoutes.js';
 import foodRouter from './routes/foodRoutes.js';
+import pedidoRouter from './routes/pedidoRoutes.js';
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.get('/health', (req, res) => {
 
 router.use('/tables', tablesRouter);
 router.use('/food', foodRouter);
+router.use('/pedidos', pedidoRouter);
 
 export default router;

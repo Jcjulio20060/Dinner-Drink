@@ -23,13 +23,13 @@ const getTableById = async (req, res) => {
 
 const createTable = async (req, res) => {
     try {
-        const { capacity, status } = req.body ?? {};
+        const { number, capacity, status } = req.body ?? {};
 
-        if (!capacity) {
-            return res.status(400).json({ message: 'capacity is required' });
+        if (!number && !capacity) {
+            return res.status(400).json({ message: 'capacity or number is required' });
         }
 
-        const table = new Table({ capacity, status: status ?? 'available' });
+        const table = new Table({ number, capacity, status: status ?? 'available' });
         await table.save();
         res.status(201).json(table);
     } catch (error) {
