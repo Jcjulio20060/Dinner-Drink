@@ -67,4 +67,38 @@ const deleteTable = async (req, res) => {
     }
 }
 
-export { getAllTables, getTableById, createTable, updateTable, deleteTable };
+const verifyTable = async (tableId) => {
+    try {
+        const table = await Table.findById(tableId);
+        if (!table) {
+            return false;
+        }
+        return table.status === 'available';
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+const addPedidoToTable = async (tableId, pedidoId) => {
+    try {
+        const table = await Table.findById(tableId);
+        if (!table) {
+            return false;
+        }
+
+        const pedidos = Array.isArray(table.pedidos) ? table.pedidos : [];
+        const updatedTable = await Table.findByIdAndUpdate(
+            tableId,
+            { pedidos: [...pedidos, pedidoId] },
+            { new: true }
+        );
+
+        return !!updatedTable;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+export { getAllTables, getTableById, createTable, updateTable, deleteTable, verifyTable, addPedidoToTable };
